@@ -40,8 +40,9 @@
             <button type="button" class="btn btn-active">15%</button>
             <button type="button" class="btn">25%</button>
             <button type="button" class="btn">50%</button>
-            <input type="number" class="btn btn-custom" id="btn-custom" placeholder="Custom">
-            <!-- <button type="button" class="btn btn-custom">Custom</button> -->
+            <input type="number" pattern="\d*" title="Only digits" class="btn btn-custom" id="btn-custom"
+              placeholder="Custom">
+
           </div>
         </div>
 
@@ -51,8 +52,8 @@
             <label for="error" class="error">Can't be zero</label>
           </div>
           <img src="./images/icon-person.svg" class="icon-person" alt="person">
-          <input type="number" pattern="[^a-zA-Z]+" title="Only digits" id="people-num" class="people-num"
-            name="people-num" placeholder="1" />
+          <input type="number" pattern="\d*" title="Only digits" id="people-num" class="people-num" name="people-num"
+            placeholder="1" />
         </div>
 
 
