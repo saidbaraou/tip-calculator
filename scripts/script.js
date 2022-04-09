@@ -7,7 +7,7 @@ const tip = document.getElementById('tip-amount');
 const total = document.getElementById('total-amount')
 const resetBtn = document.getElementById('reset-btn');
 
-bill.addEventListener('focus', () => {
+bill.addEventListener('click', () => {
   bill.setAttribute('placeholder', '')
 });
 
@@ -16,7 +16,7 @@ btns.forEach(btn => {
   btn.addEventListener('click', handleClick);
 });
 customBtn.addEventListener('input', setCustomPercentage);
-peopleNum.addEventListener('focus', () => {
+peopleNum.addEventListener('click', () => {
   peopleNum.setAttribute('placeholder', '')
 })
 peopleNum.addEventListener('input', setPeopleNum);
