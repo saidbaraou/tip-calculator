@@ -14,10 +14,7 @@ const resetBtn = document.getElementById('reset-btn');
 bill.addEventListener('click', () => {
   bill.setAttribute('placeholder', '')
 });
-
 bill.addEventListener('click', changePlaceholders);
-
-
 bill.addEventListener('click', () => {
   bill.setAttribute('placeholder', '')
 });
@@ -94,27 +91,22 @@ resetBtn.classList.add('reset-btn-active');
 
 function reset() {
   bill.value = "";
+  customBtn.value = "";
+  peopleNum.value = "";
+  percentage.value = 0.15;
   bill.setAttribute("placeholder", "0");
   peopleNum.setAttribute("placeholder", "1");
-  percentage.value = 0.15;
+  tip.innerHTML = "$0.00";
+  total.innerHTML = "0.00";
   fifteenPercent = document.querySelector('.fifteen');
   btns.forEach(btn => {
     btn.classList.remove('btn-active');
     customBtn.value = '';
     fifteenPercent.classList.add('btn-active');
   });
-  customBtn.value = "";
-  peopleNum.value = "";
+ 
 }
-function reset() {
-  bill.value = '';
-  percentage.value = 0.15;
-  customBtn.value = '';
-  peopleNum.value = 1;
-  tip.innerHTML = `$0.00`;
-  total.innerHTML = `$0.00`;
-  resetBtn.classList.remove('reset-btn-active')
-}
+
 
 window.onload = function() {
   reset();
