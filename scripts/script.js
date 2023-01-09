@@ -1,12 +1,18 @@
 const bill = document.getElementById('bill');
+let billValue = '';
 const btns = document.querySelectorAll('.btn');
 const customBtn = document.getElementById('btn-custom');
+customBtn.innerHTML = 1;
+let percentage = 0.15;
 const peopleNum = document.getElementById('people-num');
+let people = 1;
 const errorMessage = document.querySelector('.error');
 const tip = document.getElementById('tip-amount');
 const total = document.getElementById('total-amount')
 const resetBtn = document.getElementById('reset-btn');
 
+bill.addEventListener('click', changePlaceholders);
+peopleNum.addEventListener('click', changePlaceholders);
 bill.addEventListener('input', setBillValue);
 btns.forEach(btn => {
   btn.addEventListener('click', handleClick);
@@ -15,41 +21,34 @@ customBtn.addEventListener('input', setCustomPercentage);
 peopleNum.addEventListener('input', setPeopleNum);
 resetBtn.addEventListener('click', reset);
 
-let billValue = '';
+function changePlaceholders(e) {
+  e.target.setAttribute("placeholder", "");
+}
 
-function setBillValue () {
-    billValue = bill.value.replace(/\D/g,"").replace(",",".");
+function setBillValue() {
+  billValue = bill.value.replace(",",".");
   parseFloat(billValue);
   billValue > 0 ? bill.style.color = 'hsl(183, 100%, 15%)' : bill.style.color = 'hsl(184, 14%, 56%)';
   calcTip();
 }
 
-let percentage = 0.15;
-
-function handleClick (e) {
+function handleClick(e) {
   percentage = parseFloat(e.target.innerHTML) / 100;
   btns.forEach(btn => {
     btn.classList.remove('btn-active');
     customBtn.value = '';
   });
   e.target.classList.add('btn-active');
-  // console.log(percentage);
   calcTip();
-  
 }
 
-customBtn.innerHTML = 1;
-
-function setCustomPercentage () {
-  percentage = customBtn.value.replace(/\D/g,"").replace(",",".") /100;
+function setCustomPercentage() {
+  percentage = customBtn.value.replace(",",".") /100;
   parseFloat(percentage);
-  console.log(percentage);
   calcTip();
 }
 
-let people = 1;
-
-function setPeopleNum () {
+function setPeopleNum() {
   people = peopleNum.value.replace(/\D/g,"");
   parseFloat(people);
   if(people <= 0) {
@@ -61,26 +60,36 @@ function setPeopleNum () {
   calcTip();
 }
 
-function calcTip () {
+function calcTip() {
   if(people >=1) {
-    let tipAmount = ((billValue / people) * percentage).toFixed(2);
-  tip.innerHTML = `$${tipAmount}`;
-
+    //Avoid having "NaN" in tip amount field when clicking custom btn
+    //With the if statement
+    if(percentage){
+      let tipAmount = ((billValue / people) * percentage).toFixed(2);
+      tip.innerHTML = `$${tipAmount}`;
+    }
   let totalAmount = (billValue / people).toFixed(2);
   total.innerHTML = `$${totalAmount}`;
   }else{
     tip.innerHTML = '$0.00';
     total.innerHTML = '$0.00';
   }
-//Activate reset button
 resetBtn.classList.add('reset-btn-active');
 }
 
-function reset () {
-  bill.value = 0;
+function reset() {
+  bill.value = "";
+  bill.setAttribute("placeholder", "0");
+  peopleNum.setAttribute("placeholder", "1");
   percentage.value = 0.15;
-  customBtn.value = '';
-  peopleNum.value = 1;
+  fifteenPercent = document.querySelector('.fifteen');
+  btns.forEach(btn => {
+    btn.classList.remove('btn-active');
+    customBtn.value = '';
+    fifteenPercent.classList.add('btn-active');
+  });
+  customBtn.value = "";
+  peopleNum.value = "";
   tip.innerHTML = `$0.00`;
   total.innerHTML = `$0.00`;
   resetBtn.classList.remove('reset-btn-active')

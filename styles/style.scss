@@ -71,14 +71,10 @@ body {
     padding: 0.3rem;
     &:focus {
       outline: 2px solid $strong-cyan;
-      // color: $very-dark-cyan;
     }
     &.btn-custom {
       text-align: center;
       color: $very-dark-cyan;
-      // &:focus {
-      //   // color: $very-dark-cyan;
-      // }
     }
   }
 
