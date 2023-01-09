@@ -11,24 +11,14 @@ const tip = document.getElementById('tip-amount');
 const total = document.getElementById('total-amount')
 const resetBtn = document.getElementById('reset-btn');
 
-bill.addEventListener('click', () => {
-  bill.setAttribute('placeholder', '')
-});
+
 bill.addEventListener('click', changePlaceholders);
-bill.addEventListener('click', () => {
-  bill.setAttribute('placeholder', '')
-});
 peopleNum.addEventListener('click', changePlaceholders);
-
-
 bill.addEventListener('input', setBillValue);
 btns.forEach(btn => {
   btn.addEventListener('click', handleClick);
 });
 customBtn.addEventListener('input', setCustomPercentage);
-peopleNum.addEventListener('click', () => {
-  peopleNum.setAttribute('placeholder', '')
-})
 peopleNum.addEventListener('input', setPeopleNum);
 resetBtn.addEventListener('click', reset);
 
